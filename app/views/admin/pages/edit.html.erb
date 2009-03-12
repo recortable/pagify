@@ -1,0 +1,106 @@
+
+<% content_for :head do -%>
+  <script type="text/javascript">
+    $(function() {
+      $(".meta-value").editInPlace({
+        url: '<%= url_for :action => 'update_meta' %>',
+        params: "id=hola",
+        saving_text: "Guardando..."
+      });
+    });
+  </script>
+<% end %>
+
+<%= page_tabs(@page, 'Editar')  %>
+
+<% if @page.parent -%>
+  <div class="quick">
+    <%= link_to @page.parent.title, :action => 'index', :root => @page.parent_id %>
+  </div>
+<% end -%>
+
+<h1>Página '<%= @page.title %>'</h1>
+
+<h2><%= link_to_function 'Contenido', '$("#content").toggle();' %></h2>
+<div id="content">
+  <div class="formBox">
+    <h1>Editar</h1>
+
+    <%= error_messages_for :page %>
+
+    <% form_for([:admin, @page]) do |f| %>
+      <div>
+        <label>Título</label>
+        <%= f.text_field :title %>
+      </div>
+
+      <% if admin? -%>
+        <div>
+          <label>Estado</label>
+          <%= f.select :state, Page::STATES %>
+        </div>
+        <div>
+          <label>Tipo</label>
+          <%= f.text_field :mime %>
+        </div>
+      <% end -%>
+      <div style="margin: -1em 0  0 -4px"><label>&nbsp;</label>
+        <%= submit_button( 'Guardar', "jQuery('form.edit_page').submit()") %>
+      </div>
+
+      <div class="editor" style="margin-top: 3em">
+        <%= f.text_area :content, :id => 'wysiwyg' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="helpBox">
+    <h1>Códigos válidos para editar</h1>
+    <ul>
+      <li><b>Negritas:</b> *texto*</li>
+      <li><b>Itálicas:</b> _texto_</li>
+      <li><b>Título grande:</b> h1. Título grande</li>
+      <li><b>Título mediano:</b> h2. Título mediano</li>
+      <li><b>Título pequeño:</b> h3. Título pequeño</li>
+      <li><b>Enlaces: "Google":http://google.com</b></li>
+      <li><b>Imágen:</b> !enlace!<br/>
+      (el enlace aparece en la lista de archivos e imágenes asociada a la página)</li>
+      <li><b>Imágen a la izquierda:</b> !&lt;enlace! </li>
+      <li><b>Imágen a la derecha:</b> !&gt;enlace!</li>
+      <li><b>Listas:</b> * elemento</li>
+    </ul>
+    <a href="http://hobix.com/textile/quick.html" target="_blank">m&aacute;s info...</a>
+  </div>
+</div>
+
+<%= clear %>
+<% if admin? %>
+  <h2><%= link_to_function 'Metadatos', '$("#meta").toggle();' %></h2>
+  <div id="meta">
+    <div class="formBox" style="">
+      <h1>Añadir metadatos</h1>
+      <% form_for([:admin, @page, @meta]) do |f| %>
+        <%= f.hidden_field :page_id %>
+        <div>
+          <label>Nombre</label>
+          <%= f.text_field :name %>
+        </div>
+        <div>
+          <label>Valor</label>
+          <%= f.text_field :value %>
+        </div>
+        <%= submit_button( 'Añadir', "jQuery('form.new_meta').submit()" ) %>
+      <% end %>
+    </div>
+    <div style="float: left; width: 40em; ">
+      <%= render :partial => 'page_metas' %>
+    </div>
+    <%= clear %>
+  </div>
+<% end %>
+
+
+
+<%= render :partial => 'page_attachments' %>
+
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Administración <%= "de la web " + @project.title if !@project.nil? %> </title>
+    <%= stylesheet_link_tag 'admin/reset.css', 'admin/admin.css', :cache => false %>
+    <%= javascript_include_tag 'admin/jquery-1.2.6.pack.js', 'admin/jquery.inplace.min.js' ,:cache => false %>
+    <%= yield :head %>
+  </head>
+  <body>    
+    <div id="header">
+      <div class="search">
+        <% form_tag :action => 'search'  do -%><%= text_field_tag :term -%><% end -%>
+        </div>
+      <h1><a href="/"><%= @site.title %></a></h1>
+      <div class="flash"><%= flash[:notice] %>&nbsp;</div>
+    </div>
+    
+    <div id="page">
+      
+      <%= yield  %>
+    </div>
+    <div id="bottom">
+      hecho-a-mano por c a l c 
+    </div>
+  </body>
+</html>

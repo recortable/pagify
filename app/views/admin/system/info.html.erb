@@ -1,0 +1,9 @@
+<%= project_tabs  'Info' %>
+
+<h1>Información del sistema</h1>
+<div class="box">
+  c a l c  pages v.<%= Admin::AdminController::PAGES_VERSION %>
+</div>
+<h1>Operaciones delicadas</h1>
+
+<%= link_to 'limpiar cache', :action => 'clean_cache' %>

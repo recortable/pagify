@@ -1,0 +1,16 @@
+
+<%= project_tabs '' %>
+
+<div class="formBox">
+  <h1>Subir un fichero</h1>
+  
+  <%= error_messages_for :attachment %>
+  
+  <% form_for([:admin, @attachment], :html => { :multipart => true }) do |f| %>
+    <div><label>Fichero:</label>
+      <%= f.file_field :uploaded_data %>
+    </div>
+    <%= submit_button 'Subir', "jQuery('#new_attachment').submit()" %>
+  <% end %>
+</div>
+<%= clear  %>

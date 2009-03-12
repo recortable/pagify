@@ -1,0 +1,41 @@
+<%= page_tabs(@page, 'Metadata')  %>
+<h1>Página '<%= @page.title %>'</h1>
+
+<% action_area do %>
+  <%= action 'page_white_database.png', 'Add metadata', new_admin_page_meta_path(:page_id => @page) %>
+  <%= action nil, 'Back to pages', admin_pages_path %>
+
+  <% end %>
+
+<div class="dataBox">
+<p>
+  <label>Título: </label>
+  <%= @page.title %>
+</p>
+<p>
+  <label>Página padre: </label>
+  <%= @page.parent.nil? ? '<ninguna>' : @page.parent.title  %>
+</p>
+<p>
+  <label>Estado:</label>
+  <%= @page.state %>
+</p>
+</div>
+
+<h2>Meta datos</h2>
+<table style="width: 50%">
+  <thead><tr>
+      <td>Nombre</td><td>Valor</td><td></td>
+  </tr></thead>
+  <tbody>
+    <% for meta in @page.metas %>
+      <tr><td><%= meta.name  %></td>
+      <td><%= meta.value  %></td>
+      <td class="table_actions">
+            <%= link_to image_tag('admin/page_white_delete.png') + ' borrar', [@project, @page, meta], :confirm => 'seguro?', :method => :delete, :class => 'action' %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

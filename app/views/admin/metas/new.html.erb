@@ -1,0 +1,17 @@
+<%= page_tabs @page, 'Metadatos' %>
+
+<div class="formBox" style="margin-left: 1em;">
+  <h1>Añadir metadatos a '<%= @page.title %>'</h1>  
+  <% form_for([:admin, @page, @meta]) do |f| %>
+    <div>
+      <label>Nombre</label>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <label>Valor</label>
+      <%= f.text_field :value %>
+    </div>  
+      <%= submit_button( 'Añadir', "jQuery('form.new_meta').submit()" ) %>
+  <% end %>
+</div>
+    

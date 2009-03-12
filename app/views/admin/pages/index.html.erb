@@ -1,0 +1,51 @@
+<%= project_tabs  'Páginas' %>
+
+<div class="quick">
+  <h1>Enlaces rápidos  &nbsp;</h1>
+  <% for page in @quicks  -%>
+    <%= link_to page.title, :action => 'index', :root => page.id %>
+  <% end -%>
+</div>
+
+<% if admin? -%>
+  <div class="actions">
+    <% if !params[:show_metas] -%>
+      <div class="action"><%= link_to 'mostrar metadatos', :show_metas => 1, :root => params[:root] %></div>
+    <% elsif -%>
+      <div class="action"><%= link_to 'ocultar metadatos',  :root => params[:root] %></div>
+    <% end -%>
+  </div>
+<% end -%>
+
+<table>
+  <thead>
+    <td style="width: 50%">Título</td>
+    <td>Última modificación</td>
+    <% if admin? -%>
+      <td>Estado</td>
+      <td>Ref.</td>
+      <td>Tipo</td>
+    <% end -%>
+    <td>Acciones</td>
+  </thead>
+
+  <tbody>
+    <%= render :partial => 'children', :locals => {:root => @page, :depth => 0} %>
+  </tbody>
+
+</table>
+
+
+
+<script type="text/javascript">
+  jQuery(function () {
+    jQuery('.page').hover(
+    function() {
+      jQuery(this).addClass('highlight');
+    },
+    function() {
+      jQuery(this).removeClass('highlight');
+    }
+  )});
+
+</script>

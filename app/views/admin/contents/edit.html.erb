@@ -1,0 +1,27 @@
+<%= page_tabs(@page, 'Contenido')  %>
+
+<h1>Page '<%= @page.title %>'</h1>
+
+<%= error_messages_for :content %>
+
+<div class="actions">
+  <%= javascript_action('page_white_edit.png', 'guardar', "jQuery('form.edit_content').submit()") %>
+  <%= action nil, 'Cancelar', admin_pages_path %>
+</div>
+<%= clear %>
+
+<div class="formBox">
+  <h1>Edit content</h1>
+  <% form_for([:admin, @page, @content]) do |f| %>
+    <div>
+      <label>Type</label>
+      <%= f.text_field :mime %>
+    </div>
+    <div class="editor">
+      <%= f.text_area :data, :id => 'wysiwyg' %>
+    </div>
+  <% end %>
+</div>
+<%= clear %>
+
+

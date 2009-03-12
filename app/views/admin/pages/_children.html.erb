@@ -1,0 +1,29 @@
+
+<tr class="<%= cycle('par', 'impar') -%>">
+  <td>
+    <%= link_to image_tag('admin/page_white.png', :style => "margin-left: #{depth}em;"), :action => 'index', :root => root.id %>
+    <%= link_to_edit_page root %>
+    <% if params[:show_metas] %>
+      <span class="inline-metas"><% for meta in root.metas -%><label><%= meta.name %>: </label> <%= meta.value%> <% end %></span>
+    <% end  %>
+  </td>
+  <td><%= fecha root.updated_at %></td>
+  <% if admin? -%>
+  <td><%= icon(root.state, root.state) unless root.state.blank? %></td>
+  <td><%=  root.id %></td>
+  <td><%= root.mime %></td>
+  <% end %>
+  <td class="actions">    
+    <% if !root.parent.nil? %>
+      <%= link_to icon(:up, 'subir'), {:controller => 'pages', :action => 'move_up', :id => root} %>
+      <%= link_to icon(:down, 'bajar'), { :action => 'move_down', :id => root} %>
+    <% end %>
+    <%= link_to icon(:page_add, 'añadir página hija'), new_admin_page_path(:parent_id => root) %>
+    <%= link_to icon(:page_edit, 'editar'), edit_admin_page_path(root) %>
+    <%= link_to(icon(:delete, 'borrar'), [:admin, root], :confirm => 'seguro?', :method => :delete) if root.children.size == 0 %> 
+  </td>
+</tr>
+
+<% for node in root.children %>
+  <%= render :partial => 'children', :locals => {:root => node, :depth => depth + 1} %>
+<% end %>

@@ -1,0 +1,104 @@
+/*
+Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.2.0
+*/
+
+/*reset.css*/
+body,div,dl,dt,dd,ol,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}caption,th {text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+/*fonts.css*/
+body{font:13px arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
+table {font-size:inherit;font:100%;}
+select, input, textarea {font:99% arial,helvetica,clean,sans-serif;}
+pre, code {font:115% monospace;*font-size:100%;} 
+body * {line-height:1.22em;}
+
+.spacer {clear: both;font-size: 0.1%;height: 0;	width: 0;}
+
+body { text-align: center; background-color: white; }
+a { text-decoration: none; color: inherit; }
+a:hover {text-decoration: underline;}
+img { margin: 2px 0 0 0; }
+
+h1 { font-size: 200%; margin: 1.5em 0 0.5em 0.5em; }
+h2 { font-size: 150%; margin: 1em 0.75em 0em 0.75em; padding: 0.2em; font-weight: normal;
+  background-color: #AFA8A4;}
+h2 a {color: white;}
+
+/**** LAYOUT ***/
+#page { width: 75em; margin: 0px auto; background-color: #F4F3F2; text-align: left; padding: 0em 0em 5em 0em; }
+#header { background-color: #5B253D; color: white; text-align: left; padding: 1em 1em 0 1em; }
+#header h1 {margin: 0.2em 0;}
+#header div.search {float: right;}
+#header div.search input {border: 0px; padding: 2px 5px; color: #999;}
+#header div.flash {color: yellow; font-size: 120%;}
+#preview { margin: 2em; padding: 1em; background-color: white; border: 1px solid #DBD5C5; }
+#bottom {margin: 0em auto 1em auto; color: gray; border-top: 1px solid #E7E2DF; padding: 1em 0 0 0;}
+
+#page div.info {margin: 0 1em 0 1em; width: 73em; color: #DBC381; text-align: right;}
+
+/*** TABLE ***/
+table {  margin: 1em; width: 97%;}
+table thead { font-weight: normal; color: white; background-color: #A84572; border-bottom: 1px solid #6A6460; }
+td { vertical-align: middle; padding: 5px 2px; }
+td.actions {}
+tr.impar {background-color: #E7E2DF;}
+td .inline-metas {display: block;  color: silver; font-size: 80%; text-align: right;}
+td .inline-metas label {color: gray;}
+
+/*** ACTIONS ***/
+div.actions { margin: 1em; }
+div.actions .action { border: 1px solid #E7E2DF; background-color: white; float: left; margin: 0 5px 0 0; }
+div.actions a { font-size: 95%; line-height: -1em; display: block; border: 1px solid #E7E2DF;
+  background-color: white; color: #5B253D; padding: 4px 10px; margin: 2px;}
+div.actions a img { float: left; margin: 0px 0 0 -2px;}
+div.actions a:hover { color: black;  background-color: #A84572;}
+
+/** WILL_PAGINATE **/
+.pagination {margin-left: 1em; color: black;}
+.pagination a {border: 1px solid #E7E2DF; padding: 0 3px; color: #5B253D;  }
+.pagination .current {border: 1px solid black; padding: 0 3px; color: black; background-color: white;}
+
+/**** TABS ****/
+div.tabs * { display: block; float: left; padding: 0.5em 3em; margin-right: 0.2em; }
+div.tabs a { background-color: #E7E2DF; color: black; }
+div.tabs .active { background-color: #5B253D; color: white; }
+
+/**** QUICK LINKS ****/
+.quick {overflow: hidden; margin: 1em; padding: 0.5em;}
+.quick h1 {font-size: 100%; font-weight: bold; color: gray; margin: 0.2em 0 0.3em 0; display: block; float: left;}
+.quick a {display: block; float: left; padding: 0.2em 1em; margin-right: 0.1em; background-color: #E7E2DF;}
+.quick a:hover {color: white; background-color: #A84572;}
+
+/**** HELP ****/
+div.helpBox {border: 1px solid #AEA39D; float: right; padding: 1em; margin: 1em 1em 0 0; background-color: #E7E2DF;}
+div.helpBox h1 {font-size: 120%;}
+div.helpBox ul li {width: 16em;}
+
+/*** FORMS ***/
+div.formBox { border:solid 1px #AEA39D; background-color: #E7E2DF; padding: 0.5em 2em 3em 2em;
+  color:#333333; margin: 1em; float: left; }
+div.formBox h1 {  font-size: 120%; color:#000000; margin: 1em 0 1.3em 0;}
+div.formBox p{padding-bottom:14px;}
+div.formBox div { display:block; margin-bottom:10px; color:#555555;}
+div.formBox div label { display:block; float:left; padding-right:6px; width:70px; text-align:right;
+  font-weight:bold;}
+
+div.formBox form .spacer{ margin-left:80px;  margin-bottom: 4em; color:#555555;}
+div.formBox .green{ /*background: url('../../images/green.gif');*/
+  background-color: #8C817B; padding: 3px 1em; margin: 0 10px 1em 0; border-right:1px solid #5B253D;
+  border-left:1px solid #F4F3F2; border-top:1px solid #F4F3F2;
+  border-bottom:1px solid #5B253D; height:18px; color:#FFFFFF;  display:inline-block;
+  text-decoration:none; font-size: 14px; clear: both; }
+div.formBox form p { height: 1.5em; margin: 0.2em 0; }
+div.formBox form input {border: 1px solid #AEA39D; padding: 2px;}
+div.formBox form input .input-text {border:1px solid #3b6e22; color:#666666; width:180px; }
+div.formBox form textarea { border: 1px solid #AEA39D; padding: 2px; width: 46em;}
+
+.attachments {}
+.attachment {margin: 1em; padding: 1em;}
+.attachment.odd {background-color: #E7E2DF;}
+.attachment div.thumb {float: left; width: 200px; height: 150px; overflow: hidden;}
+.attachment .data {margin-left: 230px;}
+.attachment label {font-weight: bold;}

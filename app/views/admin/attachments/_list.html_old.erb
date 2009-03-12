@@ -1,0 +1,32 @@
+
+<table>
+  <thead>
+    <tr>
+      <td></td>
+      <td>Nombre</td>
+      <td>Tipo</td>
+      <td>Tamaño</td>
+      <td>Enlace (copia en el contenido)</td>
+      <td>Pagina</td>
+      <td>Etiqueta</td>
+      <td></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% for attachment in attachments %>
+      <tr>
+        <td><%= image_tag attachment.public_filename(:thumb), :alt => attachment.filename + '(thumbnail)' %></td>
+        <td><%= attachment.filename %></td>
+        <td><%= attachment.content_type %></td>
+        <td><%= attachment.size %></td>
+        <td>!<%= attachment.public_filename %>!</td>
+        <td><%= attachment.page_id %></td>
+        <td><%= attachment.label %></td>
+        <td>
+          <%= link_to icon(:delete, 'Borrar'), [:admin, attachment], :confirm => "Vas a borrar '#{attachment.filename}'. Deseas continuar?", :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

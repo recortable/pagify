@@ -1,0 +1,40 @@
+
+<div class="attachments">
+  <% for attachment in attachments %>
+    <div class="attachment <%=cycle('even', 'odd') -%>">
+      <div class="thumb">
+        <a href="<%=  attachment.public_filename -%>">
+        <% if attachment.image? %>
+          <%= image_tag(attachment.public_filename(:thumb), :alt => attachment.filename + '(thumbnail)') %>
+        <% elsif attachment.pdf? %>
+          <%= image_tag('admin/pdf_icon.gif') %>
+        <% else %>
+          <%= image_tag('admin/file_icon.gif') %>
+        <% end %>
+      </a>
+      </div>
+      <div class="data">
+        <div><label>Nombre: </label><%= attachment.filename %></div>
+        <div><label>Contenido: </label><%= attachment.content_type %></div>
+        <div><label>Peso: </label><%=  number_to_human_size(attachment.size) %></div>
+        <% if attachment.width %>
+          <div><label>Tamaño (en pixels): </label><%= attachment.width %> x <%= attachment.height %> </div>
+        <% end %>
+        <div><label>Enlace (pegar en contenido): </label>!<%= attachment.public_filename %>!</div>
+        <div><label>Página asociada: </label><%= attachment.page.title if attachment.page_id %></div>
+        <% if admin? %>
+          <div>
+            <% form_for :label, :url => {:controller => 'admin/attachments', :action => 'relabel', :id => attachment.id} do |f| %>
+              <label>Etiqueta: </label><input type="text" name="label" value="<%= attachment.label %>" />
+            <input type="submit" value="cambiar" /></div>
+          <% end %>
+        <% end  %>
+        <div>
+          <br/>
+          <%= link_to "#{icon(:delete, 'Borrar')} Borrar", [:admin, attachment], :confirm => "Vas a borrar '#{attachment.filename}'. Deseas continuar?", :method => :delete %>
+        </div>
+      </div>
+      <%= clear %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,38 @@
+<%= page_tabs(@page, 'Metadatos')  %>
+
+<h1>Página '<%= @page.title %>'</h1>
+
+<div class="formBox" style="margin-left: 1em;">
+  <h1>Añadir metadatos a '<%= @page.title %>'</h1>
+  <% form_for([:admin, @page, @meta]) do |f| %>
+    <%= f.hidden_field :page_id %>
+    <div>
+      <label>Nombre</label>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <label>Valor</label>
+      <%= f.text_field :value %>
+    </div>  
+    <%= submit_button( 'Añadir', "jQuery('form.new_meta').submit()" ) %>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <td>Nombre</td><td>Valor</td><td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% for meta in @page.metas %>
+      <tr><td><%= meta.name %></td><td><%= meta.value %></td>
+        <td><%= link_to(image_tag('admin/page_white_delete.png'), [:admin, @page, meta], :confirm => 'seguro?',
+            :method => :delete, :class => 'action')  %> 
+        </td>
+      </tr>
+    <%  end %>
+  </tbody>
+</table>
+
+

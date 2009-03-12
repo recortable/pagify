@@ -1,0 +1,42 @@
+<%= project_tabs  "buscar" %>
+
+<div class="quick">
+  <% for page in @quicks  -%>
+    <%= link_to page.title, :action => 'index', :root => page.id %>
+  <% end -%>
+</div>
+
+<h1>Resultado de buscar '<%= @term %>'</h1>
+
+<table>
+  <thead>
+    <td>Título</td>
+  </thead>
+
+  <tbody>
+    <% for page in @pages -%>
+      <tr class="<%= cycle('par', 'impar') -%>">
+        <td>
+          <%= link_to image_tag('admin/page_white.png'), :action => 'index', :root => page.id %>
+          <%= link_to_edit_page page %>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+
+</table>
+
+
+
+<script type="text/javascript">
+  jQuery(function () {
+    jQuery('.page').hover(
+    function() {
+      jQuery(this).addClass('highlight');
+    },
+    function() {
+      jQuery(this).removeClass('highlight');
+    }
+  )});
+
+</script>

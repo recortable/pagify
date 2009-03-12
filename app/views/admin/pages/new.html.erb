@@ -1,0 +1,43 @@
+<div class="tabs"><a href="/admin/pages">Páginas</a></div>
+<%= clear %>
+<br/>
+<div class="quick">
+  <%= link_to @page.parent.title, :action => 'index', :root => @page.parent_id %>
+</div>
+
+<h1>Añadir <%= @page.parent.nil? ? 'una nueva área' : "una página hija a '#{@page.parent.title}'"  %></h1>
+<div class="formBox">
+  <h1>Datos de la página</h1>
+
+  <%= error_messages_for :page %>
+
+  <% form_for([:admin, @page]) do |f| %>
+    <%= f.hidden_field :parent_id unless @page.parent.nil?  %>
+    <div>
+      <label>Título</label>
+      <%= f.text_field :title %>
+    </div>
+    <% if admin? -%>
+      <div>
+        <label>Tipo</label>
+        <%= f.text_field :mime %>
+      </div>
+      <div>
+        <label>Estado</label>
+        <%= f.select :state, Page::STATES %>
+      </div>
+    <% elsif -%>
+      <%= f.hidden_field :state,  :value => 'published' %>
+    <% end-%>
+    <%= submit_button( 'Crear', "jQuery('#new_page').submit()" ) %>
+
+
+  <% end %>
+</div>
+<%= clear %>
+
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery('#page_title').focus();
+    });
+</script>
