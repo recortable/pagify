@@ -1,3 +1,5 @@
+require 'RedCloth'
+
 module AdminHelper
   include ActionView::Helpers::TagHelper
 
@@ -33,7 +35,7 @@ module AdminHelper
   end
 
   def action(image, text, path)
-    img = image.nil? ? '' : image_tag(image)
+    img = image.nil? ? '' : image_tag("admin/#{image}")
     '<div class="action">' + link_to("#{img}<span>&nbsp;#{text}</span>", path) + '</div>'
   end
 
@@ -80,7 +82,7 @@ module AdminHelper
   end
 
   def icon(name, label, visible = false)
-    result = image_tag("icons/#{name.to_s}.png", :alt => label)
+    result = image_tag("admin/icons/#{name.to_s}.png", :alt => label)
     result << "&nbsp;#{label}" if visible
     return result
   end
