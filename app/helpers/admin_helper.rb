@@ -5,7 +5,7 @@ module AdminHelper
 
 
   def redcloth(text)
-    removed = text.gsub(/"target=blank/, '')
+    removed = text.gsub(/"target=_blank/, '')
     rc = RedCloth.new(removed)
     rc.hard_breaks = false
     rc.to_html
