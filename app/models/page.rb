@@ -22,13 +22,14 @@ class Page < ActiveRecord::Base
   acts_as_list  :scope => :parent_id
   acts_as_tree  :order => "position"
   has_many :revisions, :order => 'id DESC', :dependent => :destroy
-  has_many :metas, :order => 'name', :dependent => :destroy
+  has_many :metas, :order => 'id DESC', :dependent => :destroy
   has_many :attachments, :dependent => :destroy
   belongs_to :project
   before_create :calculate_depth
   belongs_to :parent, :class_name => 'Page'
   searches_on :title, :content
 
+  
 
   has_many :rev_children, :class_name => 'Page', :foreign_key => 'parent_id', :order => "position DESC", :dependent => :destroy
 
