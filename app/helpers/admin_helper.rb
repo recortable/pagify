@@ -5,7 +5,15 @@ module AdminHelper
 
 
   def redcloth(text)
-    RedCloth.new(text).to_html
+    supercloth(text)
+  end
+
+  def supercloth(text)
+    text = text.gsub(/"target=_blank/, '')
+    text = text.gsub(/"target=blank/, '')
+    rc = RedCloth.new(text)
+    rc.hard_breaks = false
+    rc.to_html
   end
 
   def render_page(page)
