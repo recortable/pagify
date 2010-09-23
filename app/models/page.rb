@@ -37,6 +37,16 @@ class Page < ActiveRecord::Base
   def to_param
     title ? "#{id}-#{title.parameterize}" : id.to_s
   end
+
+  def parents
+    parents = []
+    current = self
+    while current.parent
+      current = current.parent
+      parents << current
+    end
+    parents.reverse!
+  end
   
 
   def self.children_of(id)

@@ -25,6 +25,7 @@ h1 { font-size: 200%; margin: 1.5em 0 0.5em 0.5em; }
 h2 { font-size: 150%; margin: 1em 0.75em 0em 0.75em; padding: 0.2em; font-weight: normal;
   background-color: #AFA8A4;}
 h2 a {color: white;}
+h3 { font-size: 120%; margin-left: 1em;}
 
 /**** LAYOUT ***/
 #page { width: 75em; margin: 0px auto; background-color: #F4F3F2; text-align: left; padding: 0em 0em 5em 0em; }

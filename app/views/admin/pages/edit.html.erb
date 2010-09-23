@@ -13,14 +13,14 @@
 
 <%= page_tabs(@page, 'Editar')  %>
 
-<% if @page.parent -%>
+<h3>Dónde estamos:</h3>
   <div class="quick">
-    <%= link_to @page.parent.title, :action => 'index', :root => @page.parent_id %>
+      <% @page.parents.each do |page| %>
+        <%= link_to page.title, :action => 'index', :root => page.id %>
+      <% end %>
   </div>
-<% end -%>
 
-<h1>Página '<%= @page.title %>'</h1>
-
+<h1><%= @page.title %></h1>
 <h2><%= link_to_function 'Contenido', '$("#content").toggle();' %></h2>
 <div id="content">
   <div class="formBox">
@@ -64,7 +64,7 @@
       <li><b>Título pequeño:</b> h3. Título pequeño</li>
       <li><b>Enlaces: "Google":http://google.com</b></li>
       <li><b>Imágen:</b> !enlace!<br/>
-      (el enlace aparece en la lista de archivos e imágenes asociada a la página)</li>
+        (el enlace aparece en la lista de archivos e imágenes asociada a la página)</li>
       <li><b>Imágen a la izquierda:</b> !&lt;enlace! </li>
       <li><b>Imágen a la derecha:</b> !&gt;enlace!</li>
       <li><b>Listas:</b> * elemento</li>
